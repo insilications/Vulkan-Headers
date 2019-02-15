@@ -4,7 +4,7 @@
 #
 Name     : Vulkan-Headers
 Version  : 1.1.100
-Release  : 5
+Release  : 6
 URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.1.100.tar.gz
 Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.1.100.tar.gz
 Summary  : Vulkan header files
@@ -55,7 +55,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1550243086
+export SOURCE_DATE_EPOCH=1550243157
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -63,7 +63,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1550243086
+export SOURCE_DATE_EPOCH=1550243157
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-Headers
 cp LICENSE.txt %{buildroot}/usr/share/package-licenses/Vulkan-Headers/LICENSE.txt
