@@ -4,10 +4,10 @@
 #
 Name     : Vulkan-Headers
 Version  : 1.1.130
-Release  : 31
+Release  : 32
 URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.1.130/Vulkan-Headers-1.1.130.tar.gz
 Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.1.130/Vulkan-Headers-1.1.130.tar.gz
-Summary  : Vulkan header files
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: Vulkan-Headers-data = %{version}-%{release}
@@ -35,7 +35,6 @@ Group: Development
 Requires: Vulkan-Headers-data = %{version}-%{release}
 Provides: Vulkan-Headers-devel = %{version}-%{release}
 Requires: Vulkan-Headers = %{version}-%{release}
-Requires: Vulkan-Headers = %{version}-%{release}
 
 %description dev
 dev components for the Vulkan-Headers package.
@@ -58,10 +57,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1576003831
+export SOURCE_DATE_EPOCH=1576004531
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -75,7 +73,7 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1576003831
+export SOURCE_DATE_EPOCH=1576004531
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/Vulkan-Headers
 cp %{_builddir}/Vulkan-Headers-1.1.130/LICENSE.txt %{buildroot}/usr/share/package-licenses/Vulkan-Headers/2b8b815229aa8a61e483fb4ba0588b8b6c491890
