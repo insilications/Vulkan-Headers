@@ -4,7 +4,7 @@
 #
 Name     : Vulkan-Headers
 Version  : 1.2.137
-Release  : 39
+Release  : 40
 URL      : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.2.137/Vulkan-Headers-1.2.137.tar.gz
 Source0  : https://github.com/KhronosGroup/Vulkan-Headers/archive/v1.2.137/Vulkan-Headers-1.2.137.tar.gz
 Summary  : Vulkan header files
