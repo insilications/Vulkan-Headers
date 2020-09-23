@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : Vulkan-Headers
 Version  : 1.2.154
-Release  : 57
+Release  : 58
 URL      : file:///insilications/build/clearlinux/packages/Vulkan-Headers/Vulkan-Headers-1.2.154.tar.gz
 Source0  : file:///insilications/build/clearlinux/packages/Vulkan-Headers/Vulkan-Headers-1.2.154.tar.gz
 Summary  : No detailed summary available
@@ -13,11 +13,6 @@ Group    : Development/Tools
 License  : Apache-2.0
 Requires: Vulkan-Headers-data = %{version}-%{release}
 BuildRequires : buildreq-cmake
-BuildRequires : gcc-dev32
-BuildRequires : gcc-libgcc32
-BuildRequires : gcc-libstdc++32
-BuildRequires : glibc-dev32
-BuildRequires : glibc-libc32
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
@@ -58,7 +53,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1600830438
+export SOURCE_DATE_EPOCH=1600830480
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -95,37 +90,10 @@ export MAKEFLAGS=%{?_smp_mflags}
 %cmake ..
 make  %{?_smp_mflags}
 popd
-mkdir -p clr-build32
-pushd clr-build32
-export CFLAGS="-g -O2 -fuse-linker-plugin -pipe"
-export CXXFLAGS="-g -O2 -fuse-linker-plugin -fvisibility-inlines-hidden -pipe"
-export LDFLAGS="-g -O2 -fuse-linker-plugin -pipe"
-export AR=gcc-ar
-export RANLIB=gcc-ranlib
-export NM=gcc-nm
-unset LD_LIBRARY_PATH
-export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
-export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
-export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
-export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
-export LDFLAGS="${LDFLAGS}${LDFLAGS:+ }-m32 -mstackrealign"
-%cmake -DLIB_INSTALL_DIR:PATH=/usr/lib32 -DCMAKE_INSTALL_LIBDIR=/usr/lib32 -DLIB_SUFFIX=32 ..
-make  %{?_smp_mflags}
-unset PKG_CONFIG_PATH
-popd
 
 %install
-export SOURCE_DATE_EPOCH=1600830438
+export SOURCE_DATE_EPOCH=1600830480
 rm -rf %{buildroot}
-pushd clr-build32
-%make_install32
-if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
-then
-pushd %{buildroot}/usr/lib32/pkgconfig
-for i in *.pc ; do ln -s $i 32$i ; done
-popd
-fi
-popd
 pushd clr-build
 %make_install
 popd
